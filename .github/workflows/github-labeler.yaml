@@ -1,0 +1,26 @@
+name: GitHub Action CI
+
+on:
+    pull_request:
+        # We don't need this to be run on all types of PR behavior
+        # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request
+        # You can change the base branch, so update the label if it's edited.
+        types:
+          - opened
+          - edited
+
+jobs:
+    ci:
+        name: GitHub Label Bot
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get branch names
+            id: branch-name
+            uses: tj-actions/branch-name@v5.4
+
+          - name: Label the PR (if needed)
+            uses: andymckay/labeler@1.0.2
+            with:
+              run: echo "Adding Label 'Target: ${{steps.branch-name.outputs.current_branch}}'"
+              add-labels: "Target: ${{steps.branch-name.outputs.current_branch}}"
+
