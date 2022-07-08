@@ -1,0 +1,33 @@
+name: GitHub Action CI
+
+on:
+    pull_request:
+        # We don't need this to be run on all types of PR behavior
+        # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request
+        # You can change the base branch, so update the label if it's edited.
+        types:
+          - opened
+          - edited
+
+jobs:
+    ci:
+        name: GitHub Label Bot
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out the code
+            uses: actions/checkout@v2
+            with:
+                fetch-depth: 1
+
+          - name: Setup Python
+            uses: actions/setup-python@v2
+            with:
+              python-version: '3.x'
+
+          - name: Get the GitPython and PyGithub modules
+            run: pip install gitpython PyGithub
+
+          - name: Label the PR (if needed)
+            run: $GITHUB_WORKSPACE/.github/workflows/github-labeler.py
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
