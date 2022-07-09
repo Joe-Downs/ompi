@@ -1,5 +1,6 @@
 name: GitHub Action Labeler
 
+# Some cool changes...
 # We're using pull_request_target here instead of just pull_request so that the
 # action runs in the context of the base of the pull request, rather than in the
 # context of the merge commit. For more detail about the differences, see:
