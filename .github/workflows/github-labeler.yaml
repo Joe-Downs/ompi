@@ -30,6 +30,14 @@ jobs:
           - name: Print out the env
             run: env | sort
 
+          - name: Debug information
+            env:
+              GITHUB_DATA: ${{ toJSON(github) }}
+            run: |
+              echo This is information that may be useful for debugging.
+              echo "$GITHUB_DATA"
+
+
           - name: Label the PR (if needed)
             run: $GITHUB_WORKSPACE/.github/workflows/github-labeler.py
             env:
