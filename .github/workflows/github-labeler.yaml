@@ -1,7 +1,7 @@
 name: GitHub Action CI
 
 on:
-    pull_request:
+    pull_request_target:
         # We don't need this to be run on all types of PR behavior
         # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request
         # You can change the base branch, so update the label if it's edited.
