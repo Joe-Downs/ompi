@@ -43,8 +43,10 @@ def ensureLabels(pullRequest):
             if label.name == targetLabel:
                 needsLabel = False
             else:
+                print(f"Removing label '{label.name}")
                 pullRequest.remove_from_labels(label)
     if needsLabel:
+        print(f"Adding label '{label.name}")
         pullRequest.add_to_labels(targetLabel)
     return
 
