@@ -1,5 +1,9 @@
-name: GitHub Action CI
+name: GitHub Action Labeler
 
+# We're using pull_request_target here instead of just pull_request so that the
+# action runs in the context of the base of the pull request, rather than in the
+# context of the merge commit. For more detail about the differences, see:
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
 on:
     pull_request_target:
         # We don't need this to be run on all types of PR behavior
@@ -11,32 +15,19 @@ on:
 
 jobs:
     ci:
-        name: GitHub Label Bot
+        name: Label Bot
         runs-on: ubuntu-latest
         steps:
           - name: Check out the code
             uses: actions/checkout@v2
-            with:
-                fetch-depth: 1
 
           - name: Setup Python
             uses: actions/setup-python@v2
             with:
               python-version: '3.x'
 
-          - name: Get the GitPython and PyGithub modules
-            run: pip install gitpython PyGithub
-
-          - name: Print out the env
-            run: env | sort
-
-          - name: Debug information
-            env:
-              GITHUB_DATA: ${{ toJSON(github) }}
-            run: |
-              echo This is information that may be useful for debugging.
-              echo "$GITHUB_DATA"
-
+          - name: Get the PyGithub module
+            run: pip install PyGithub
 
           - name: Label the PR (if needed)
             run: $GITHUB_WORKSPACE/.github/workflows/github-labeler.py
