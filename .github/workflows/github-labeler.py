@@ -20,11 +20,14 @@ GITHUB_BASE_REF   = os.environ.get('GITHUB_BASE_REF')
 GITHUB_TOKEN      = os.environ.get('GITHUB_TOKEN')
 GITHUB_REPOSITORY = os.environ.get('GITHUB_REPOSITORY')
 GITHUB_REF        = os.environ.get('GITHUB_REF')
+PR_NUM            = os.environ.get('PR_NUM')
 
 # Sanity check
 if (GITHUB_BASE_REF is None or
     GITHUB_TOKEN is None or
-    GITHUB_REPOSITORY is None):
+    GITHUB_REPOSITORY is None or
+    GITHUB_REF is None or
+    PR_NUM is None):
     print("Error: this script is designed to run as a Github Action")
     exit(1)
 
@@ -53,8 +56,7 @@ g = Github(GITHUB_TOKEN)
 repo = g.get_repo(GITHUB_REPOSITORY)
 # Extract the PR number from GITHUB_REF
 print(GITHUB_REF)
-match  = re.search("/(\d+)/", GITHUB_REF)
-pr_num = int(match.group(1))
+#match  = re.search("/(\d+)/", GITHUB_REF)
+pr_num = int(PR_NUM)
 pr     = repo.get_pull(pr_num)
 ensureLabels(pr)
-
