@@ -52,6 +52,7 @@ def ensureLabels(pullRequest):
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(GITHUB_REPOSITORY)
 # Extract the PR number from GITHUB_REF
+print(GITHUB_REF)
 match  = re.search("/(\d+)/", GITHUB_REF)
 pr_num = int(match.group(1))
 pr     = repo.get_pull(pr_num)
