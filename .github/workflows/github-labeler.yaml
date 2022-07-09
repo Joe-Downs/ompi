@@ -27,6 +27,9 @@ jobs:
           - name: Get the GitPython and PyGithub modules
             run: pip install gitpython PyGithub
 
+          - name: Print out the env
+            run: env | sort
+
           - name: Label the PR (if needed)
             run: $GITHUB_WORKSPACE/.github/workflows/github-labeler.py
             env:
