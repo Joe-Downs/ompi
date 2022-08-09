@@ -75,6 +75,7 @@ if (GITHUB_WORKSPACE is None or
     print("Error: this script is designed to run as a Github Action")
     exit(1)
 
+print(f"GH_REF: {GITHUB_REF}")
 #----------------------------------------------------------------------------
 
 """
@@ -352,7 +353,6 @@ def get_github_pr():
     g      = Github(GITHUB_TOKEN)
     repo   = g.get_repo(GITHUB_REPOSITORY)
 
-    print(f"GH_REF: {GITHUB_REF}")
     # Extract the PR number from GITHUB_REF
     match  = re.search("/(\d+)/", GITHUB_REF)
     pr_num = int(match.group(1))
