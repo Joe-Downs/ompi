@@ -352,6 +352,7 @@ def get_github_pr():
     g      = Github(GITHUB_TOKEN)
     repo   = g.get_repo(GITHUB_REPOSITORY)
 
+    print(f"GH_REF: {GITHUB_REF}")
     # Extract the PR number from GITHUB_REF
     match  = re.search("/(\d+)/", GITHUB_REF)
     pr_num = int(match.group(1))
