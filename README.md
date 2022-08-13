@@ -38,3 +38,7 @@ HTML documentation and man pages by default; it must be built.
 Instructions for how to build the Open MPI documentation can be found
 here:
 https://docs.open-mpi.org/en/main/developers/prerequisites.html#sphinx.
+foo On branch pr/testing-commit-checker
+Your branch is up to date with 'origin/pr/testing-commit-checker'.
+
+nothing to commit, working tree clean
