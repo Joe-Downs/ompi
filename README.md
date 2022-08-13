@@ -42,3 +42,15 @@ foo On branch pr/testing-commit-checker
 Your branch is up to date with 'origin/pr/testing-commit-checker'.
 
 nothing to commit, working tree clean
+foo[pr/testing-commit-checker dc3ff3dbb3] bogus
+ 1 file changed, 4 insertions(+)
+Enumerating objects: 5, done.
+Counting objects:  20% (1/5)Counting objects:  40% (2/5)Counting objects:  60% (3/5)Counting objects:  80% (4/5)Counting objects: 100% (5/5)Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects:  33% (1/3)Compressing objects:  66% (2/3)Compressing objects: 100% (3/3)Compressing objects: 100% (3/3), done.
+Writing objects:  33% (1/3)Writing objects:  66% (2/3)Writing objects: 100% (3/3)Writing objects: 100% (3/3), 403 bytes | 403.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/2)        remote: Resolving deltas:  50% (1/2)        remote: Resolving deltas: 100% (2/2)        remote: Resolving deltas: 100% (2/2), completed with 2 local objects.        
+To github.com:Joe-Downs/ompi.git
+   e3042c11d3..dc3ff3dbb3  pr/testing-commit-checker -> pr/testing-commit-checker
+foo 
