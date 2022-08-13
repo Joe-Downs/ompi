@@ -5,6 +5,7 @@
 Woah!
 Cool!
 Spammy Spam
+Spam
 
 [The Open MPI Project](https://www.open-mpi.org/) is an open source
 implementation of the [Message Passing Interface (MPI)
