@@ -33,6 +33,7 @@ jobs:
             run: pip install gitpython PyGithub
 
           - name: Check all git commits
-            run: $GITHUB_WORKSPACE/.github/workflows/git-commit-checks.py
+            run:
+              $GITHUB_WORKSPACE/.github/workflows/git-commit-checks.py
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
