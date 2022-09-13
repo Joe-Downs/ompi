@@ -25,5 +25,5 @@ jobs:
       - name: Pull Request Commit Checker
         uses: Joe-Downs/commit-checker@main
         with:
-          repo-token: ${{ secretes.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ github.event.number }}
