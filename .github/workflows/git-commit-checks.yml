@@ -16,9 +16,11 @@ on:
 permissions: {} # none
 
 jobs:
-    ci:
-        permissions:
-          pull-requests: write
-        name: Check Commits
-        - name: Pull Request Commit Checker
-          uses: Joe-Downs/commit-checker@v0.1.0
+  ci:
+    permissions:
+      pull-requests: write
+    name: Check Commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Commit Checker
+        uses: Joe-Downs/commit-checker@v0.1.0
