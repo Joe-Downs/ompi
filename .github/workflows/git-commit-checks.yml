@@ -19,26 +19,6 @@ jobs:
     ci:
         permissions:
           pull-requests: write
-        name: Git commit checker
-        runs-on: ubuntu-latest
-        steps:
-          - name: Check out the code
-            uses: actions/checkout@v2
-            with:
-                # Get all branches and history
-                fetch-depth: 0
-
-          - name: Setup Python
-            uses: actions/setup-python@v2
-            with:
-              python-version: '3.x'
-
-          - name: Get the GitPython and PyGithub modules
-            run: pip install gitpython PyGithub
-
-          - name: Check all git commits
-            run:
-              $GITHUB_WORKSPACE/.github/workflows/git-commit-checks.py
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                PR_NUM: ${{ github.event.number }}
+        name: Check Commits
+        - name: Pull Request Commit Checker
+          uses: Joe-Downs/commit-checker@v0.1.0
