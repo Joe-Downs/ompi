@@ -7,3 +7,4 @@ in this directory, it will be used in the CI *for that PR*.
 You have been warned.  :smile:
 foo 
 foo 
+foo 
