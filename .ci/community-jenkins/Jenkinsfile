@@ -7,5 +7,5 @@ node('linux') {
 }
 
 stage("Finish") {
-    println("Completed")
+    println("It has ceased to be.")
 }
