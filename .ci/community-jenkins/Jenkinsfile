@@ -56,6 +56,7 @@ def prepare_check_stages() {
 	def name = "Compiler: ${compiler}".replaceAll("-", "")
 	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \${compiler}\""))
     }
+    
     build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
     build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
 
