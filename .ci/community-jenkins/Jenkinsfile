@@ -40,17 +40,17 @@ node('linux') {
 // Checks if a given label is online. If it is, do nothing and return so the
 // node can continue. If the platform is offline, throw and error to abort.
 println("${Jenkins}")
-def check_label_is_online(label) {
-    for (computer in computers) {
-	if (computer.isOnline()) {
-	    labelStr = computer.node.getLabelString()
-	}
-	if (labelStr == platform) {
-	    return
-	}
-    }
-    error "Aborting. ${label} is not online."
-}
+// def check_label_is_online(label) {
+//     for (computer in computers) {
+// 	if (computer.isOnline()) {
+// 	    labelStr = computer.node.getLabelString()
+// 	}
+// 	if (labelStr == platform) {
+// 	    return
+// 	}
+//     }
+//     error "Aborting. ${label} is not online."
+// }
 
 // returns a list of build stages ("build Open MPI", "Build Tests", etc.),
 // although currently we only support the one stage of "everything", where each
