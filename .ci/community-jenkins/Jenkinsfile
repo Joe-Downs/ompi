@@ -63,13 +63,13 @@ def prepare_check_stages() {
     // build everything stage
     def build_parallel_map = [:]
     for (platform in platforms) {
-	check_label_is_online(platform)
+	//check_label_is_online(platform)
 	def name = "Platform: ${platform}".replaceAll("-", "")
 	build_parallel_map.put(name, prepare_build(name, platform, ""))
     }
 
     for (compiler in compilers) {
-	check_label_is_online(compiler)
+	//check_label_is_online(compiler)
 	def name = "Compiler: ${compiler}".replaceAll("-", "")
 	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \${compiler}\""))
     }
