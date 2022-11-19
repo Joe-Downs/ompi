@@ -37,7 +37,6 @@ node('linux') {
     }
 }
 
-
 // Checks if a given label is online. If it is, do nothing and return so the
 // node can continue. If the platform is offline, throw and error to abort.
 def computers = Jenkins.computers
