@@ -37,8 +37,10 @@ node('linux') {
     }
 }
 
+
 // Checks if a given label is online. If it is, do nothing and return so the
 // node can continue. If the platform is offline, throw and error to abort.
+def computers = Jenkins.instance.computers
 def check_label_is_online(label) {
     for (computer in computers) {
 	if (computer.isOnline()) {
@@ -58,8 +60,6 @@ def prepare_check_stages() {
     def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
     def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
     def check_stages_list = []
-
-    def computers = Jenkins.instance.computers
 
     // build everything stage
     def build_parallel_map = [:]
