@@ -22,7 +22,7 @@ milestone(buildNumber)
 
 node('linux') {
     stage('Initialize') {
-	println("${Jenkins}")
+	println(Jenkins.computers)
 	check_stages = prepare_check_stages()
 	println("Initialized pipeline.")
     }
