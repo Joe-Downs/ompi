@@ -20,11 +20,11 @@ if (buildNumber > 1) {
 }
 milestone(buildNumber)
 
-print("Outside a node: ${Jenkins.class}")
+print("Outside a node: ${Jenkins.get()}")
 
 node('linux') {
     stage('Initialize') {
-	print("Inside a node: ${Jenkins.class}")
+	print("Inside a node: ${Jenkins.get()}")
 	sh "env | sort"
 	check_stages = prepare_check_stages()
 	println("Initialized pipeline.")
