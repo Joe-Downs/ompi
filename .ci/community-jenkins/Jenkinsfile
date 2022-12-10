@@ -101,9 +101,9 @@ def prepare_build(build_name, label, build_arg) {
 		// TODO: maybe not need this?
 		// If build_arg is an empty string, withEnv() will throw an
 		// error. So if build_arg is empty, we don't need to append it.
-		if (build_arg.length() > 0) {
-		     build_env << build_arg
-		}
+		//if (build_arg.length() > 0) {
+		//     build_env << build_arg
+		//}
 		checkout_code()
 		dir("ompi") {
 		    def autotools_build_root = "${WORKSPACE}/autotools-install"
