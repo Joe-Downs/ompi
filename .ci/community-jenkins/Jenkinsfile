@@ -72,7 +72,7 @@ def prepare_check_stages() {
     for (compiler in compilers) {
 	//check_label_is_online(compiler)
 	def name = "Compiler: ${compiler}".replaceAll("-", "")
-	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \${compiler}\""))
+	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \"\${compiler}\""))
     }
 
     build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
@@ -98,9 +98,12 @@ def prepare_build(build_name, label, build_arg) {
 		// variable A.
 		def build_env = ['PATH+AUTOTOOLS=$WORKSPACE/autotools-install/bin',
                                  'LD_LIBRARY_PATH+AUTOTOOLS=$WORKSPACE/autotools-install/lib']
-		// TODO: maybe not need this?
-		// If build_arg is an empty string, withEnv() will throw an
-		// error. So if build_arg is empty, we don't need to append it.
+
+		// TODO: if we uncomment this, it tries to make a env variable
+		// like "--compiler...", which is illegal If build_arg is an
+		// empty string, withEnv() will throw an error. So if build_arg
+		// is empty, we don't need to append it.
+
 		//if (build_arg.length() > 0) {
 		//     build_env << build_arg
 		//}
