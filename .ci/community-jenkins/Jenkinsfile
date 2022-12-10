@@ -23,7 +23,6 @@ milestone(buildNumber)
 
 node('linux') {
     stage('Initialize') {
-	sh "env | sort"
 	check_stages = prepare_check_stages()
 	println("Initialized pipeline.")
     }
@@ -111,11 +110,12 @@ def prepare_build(build_name, label, build_arg) {
 		}
 		checkout_code()
 		dir("ompi") {
-		    sh "env | sort"
 		    def autotools_build_root = "${WORKSPACE}/autotools-install"
 		    def autotools_install_tree = "${autotools_build_root}/install"
-		    sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
 		    withEnv(build_env) {
+			// TODO: remove debugging
+			sh "env | sort"
+			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
 			sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
 		    }
 		}
