@@ -193,14 +193,14 @@ debug_print "Version string: ${version_string}"
 
 cd ${autotools_root}
 
-if [[ ${IS_EC2_JENKINS} = "yes" && ! -d ${autotools_install} ]] ; then
-    debug_print "Attempting to download cached build ${s3_build_path}/${tarball_name}"
-    if aws s3 cp ${s3_build_path}/${tarball_name} . >& /dev/null ; then
-        debug_print "Downloaded build from S3"
-        tar xf ${tarball_name}
-        rm ${tarball_name}
-    fi
-fi
+# if [[ ${IS_EC2_JENKINS} = "yes" && ! -d ${autotools_install} ]] ; then
+#     debug_print "Attempting to download cached build ${s3_build_path}/${tarball_name}"
+#     if aws s3 cp ${s3_build_path}/${tarball_name} . >& /dev/null ; then
+#         debug_print "Downloaded build from S3"
+#         tar xf ${tarball_name}
+#         rm ${tarball_name}
+#     fi
+# fi
 
 if [[ ! -d ${autotools_install} ]] ; then
     debug_print "==> No build found ; building from scratch"
