@@ -79,8 +79,9 @@ def prepare_check_stages() {
 	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \${compiler}\""))
     }
 
-    build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
+    // TODO: readd these options
+    //build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
+    //build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
@@ -105,11 +106,12 @@ def prepare_build(build_name, label, build_arg) {
 		// TODO: maybe not need this?
 		// If build_arg is an empty string, withEnv() will throw an
 		// error. So if build_arg is empty, we don't need to append it.
-		// if (build_arg.length() > 0) {
-		//     build_env << build_arg
-		// }
+		if (build_arg.length() > 0) {
+		     build_env << build_arg
+		}
 		checkout_code()
 		dir("ompi") {
+		    sh "env | sort"
 		    def autotools_build_root = "${WORKSPACE}/autotools-install"
 		    def autotools_install_tree = "${autotools_build_root}/install"
 		    sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
