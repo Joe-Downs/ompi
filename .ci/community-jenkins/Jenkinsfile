@@ -72,7 +72,7 @@ def prepare_check_stages() {
     for (compiler in compilers) {
 	//check_label_is_online(compiler)
 	def name = "Compiler: ${compiler}".replaceAll("-", "")
-	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \"\${compiler}\""))
+	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \"${compiler}\""))
     }
 
     build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
@@ -122,7 +122,6 @@ def prepare_build(build_name, label, build_arg) {
 }
 
 def checkout_code() {
-    println("JOE: before checkout")
     checkout(changelog: false, poll: false,
 	     scm: [$class: 'GitSCM', branches: [[name: '${CHANGE_BRANCH}']],
 		   doGenerateSubmoduleConfigurations: false,
@@ -138,5 +137,4 @@ def checkout_code() {
 		   submoduleCfg: [], // FIXME: make this be the right repo/credentials
 		   userRemoteConfigs: [[credentialsId: '685fec23-8b63-482f-9460-cea10efa585a',
 					url: 'https://github.com/Joe-Downs/ompi/']]])
-    println("JOE: after checkout")
 }
