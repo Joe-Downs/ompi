@@ -115,7 +115,7 @@ def prepare_build(build_name, label, build_arg) {
 		    withEnv(build_env) {
 			// TODO: remove debugging
 			sh "env | sort"
-			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -m 1.15.1 -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
+			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
 			sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
 		    }
 		}
