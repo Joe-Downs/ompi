@@ -61,7 +61,7 @@ def prepare_check_stages() {
     //def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
     //def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
     def compilers = []
-    def platforms = ["ubuntu_18.04"]
+    def platforms = ["rhel8"]
     def check_stages_list = []
 
     // build everything stage
