@@ -119,6 +119,7 @@ def prepare_build(build_name, label, build_arg) {
 }
 
 def checkout_code() {
+    println("JOE: before checkout")
     checkout(changelog: false, poll: false,
 	     scm: [$class: 'GitSCM', branches: [[name: '${CHANGE_BRANCH}']],
 		   doGenerateSubmoduleConfigurations: false,
@@ -134,4 +135,5 @@ def checkout_code() {
 		   submoduleCfg: [], // FIXME: make this be the right repo/credentials
 		   userRemoteConfigs: [[credentialsId: '685fec23-8b63-482f-9460-cea10efa585a',
 					url: 'https://github.com/Joe-Downs/ompi/']]])
+    println("JOE: after checkout")
 }
