@@ -57,11 +57,8 @@ node('linux') {
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    //TODO: re add these compilers when help2man issue is fixed
-    //def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
-    //def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
-    def compilers = []
-    def platforms = ["rhel8"]
+    def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
+    def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
     def check_stages_list = []
 
     // build everything stage
@@ -78,9 +75,8 @@ def prepare_check_stages() {
 	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \${compiler}\""))
     }
 
-    // TODO: readd these options
-    //build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
-    //build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
+    build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
+    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
@@ -113,8 +109,6 @@ def prepare_build(build_name, label, build_arg) {
 		    def autotools_build_root = "${WORKSPACE}/autotools-install"
 		    def autotools_install_tree = "${autotools_build_root}/install"
 		    withEnv(build_env) {
-			// TODO: remove debugging
-			sh "env | sort"
 			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
 			sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
 		    }

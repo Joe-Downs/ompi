@@ -253,8 +253,8 @@ if [[ ! -d ${autotools_install} ]] ; then
         (cd automake-${AM_VERSION} ; patch -p 1 < ${patch_file})
     else
         debug_print "patch automake-${AM_VERSION}.patch not found."
-    fi # Revert back to make -d install (?)
-    (cd automake-${AM_VERSION} ; ./configure --prefix=${autotools_install} ; make V=1 all ; make install)
+    fi
+    (cd automake-${AM_VERSION} ; ./configure --prefix=${autotools_install} ; make install)
 
     curl -fLO http://ftp.gnu.org/gnu/libtool/libtool-${LT_VERSION}.tar.gz
     tar xf libtool-${LT_VERSION}.tar.gz
