@@ -39,6 +39,7 @@ node('linux') {
     }
 }
 
+// TODO: add comment / fix label issue
 // Checks if a given label is online. If it is, do nothing and return so the
 // node can continue. If the platform is offline, throw and error to abort.
 // def check_label_is_online(label) {
@@ -57,8 +58,11 @@ node('linux') {
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
-    def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
+    //TODO: re add these compilers when help2man issue is fixed
+    //def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
+    //def platforms = ["amazon_linux_1", "amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
+    def compilers = []
+    def platforms = ["ubuntu_18.04"]
     def check_stages_list = []
 
     // build everything stage

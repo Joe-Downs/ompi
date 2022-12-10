@@ -193,6 +193,7 @@ debug_print "Version string: ${version_string}"
 
 cd ${autotools_root}
 
+# TODO: put this back
 # if [[ ${IS_EC2_JENKINS} = "yes" && ! -d ${autotools_install} ]] ; then
 #     debug_print "Attempting to download cached build ${s3_build_path}/${tarball_name}"
 #     if aws s3 cp ${s3_build_path}/${tarball_name} . >& /dev/null ; then
@@ -252,8 +253,8 @@ if [[ ! -d ${autotools_install} ]] ; then
         (cd automake-${AM_VERSION} ; patch -p 1 < ${patch_file})
     else
         debug_print "patch automake-${AM_VERSION}.patch not found."
-    fi
-    (cd automake-${AM_VERSION} ; ./configure --prefix=${autotools_install} ; make -d install)
+    fi # Revert back to make -d install (?)
+    (cd automake-${AM_VERSION} ; ./configure --prefix=${autotools_install} ; make all ; make install)
 
     curl -fLO http://ftp.gnu.org/gnu/libtool/libtool-${LT_VERSION}.tar.gz
     tar xf libtool-${LT_VERSION}.tar.gz
