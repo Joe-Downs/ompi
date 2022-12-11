@@ -135,6 +135,9 @@ case ${PLATFORM_ID} in
 	    gcc5)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-5 CXX=g++-5 FC=gfortran-5"
 		;;
+	    gcc6)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-6 CXX=g++-6 FC=gfortran-6"
+		;;
 	    clang36)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-3.6 CXX=clang++-3.6 --disable-mpi-fortran"
 		;;
@@ -143,6 +146,9 @@ case ${PLATFORM_ID} in
 		;;
 	    clang38)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-3.8 CXX=clang++-3.8 --disable-mpi-fortran"
+		;;
+	    clang39)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-3.9 CXX=clang++-3.9 --disable-mpi-fortran"
 		;;
 	    *)
 		echo "Unsupported compiler ${COMPILER}.  Aborting"

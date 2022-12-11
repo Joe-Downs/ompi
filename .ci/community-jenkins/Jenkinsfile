@@ -57,7 +57,7 @@ node('linux') {
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    def compilers = ["clang38", "clang39", "gcc5", "gcc6"]
+    def compilers = ["clang39", "gcc5", "gcc6"]
     def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
     def check_stages_list = []
 
