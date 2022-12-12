@@ -112,7 +112,7 @@ def prepare_build(build_name, label, build_arg) {
 		    def autotools_build_root = "${WORKSPACE}/autotools-install"
 		    def autotools_install_tree = "${autotools_build_root}/install"
 		    withEnv(build_env) {
-			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} -z ./contrib/dist/make_dist_tarball ompi"
+			sh "/bin/bash -x .ci/community-jenkins/autotools-build.sh -r ${autotools_build_root} -t ${autotools_install_tree} ompi"
 			sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
 		    }
 		}
