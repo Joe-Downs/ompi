@@ -250,6 +250,7 @@ fi
 # the docs.
 if test "${DISTCHECK}" = "1"; then
     echo "--> installing doc requirements"
+    pip -V
     pip install -r docs/requirements.txt
     echo "--> running make ${MAKE_ARGS} distcheck"
     make ${MAKE_ARGS} distcheck
