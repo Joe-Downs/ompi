@@ -76,7 +76,7 @@ def prepare_check_stages() {
     }
 
     build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
+    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_20.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 

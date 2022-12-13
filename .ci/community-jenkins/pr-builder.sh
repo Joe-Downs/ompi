@@ -249,9 +249,6 @@ fi
 # make check tests. We need to install the requirements (Sphinx) so we can build
 # the docs.
 if test "${DISTCHECK}" = "1"; then
-    echo "--> installing doc requirements"
-    pip -V
-    pip install -r docs/requirements.txt
     echo "--> running make ${MAKE_ARGS} distcheck"
     make ${MAKE_ARGS} distcheck
     exit $?
