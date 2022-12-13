@@ -245,9 +245,12 @@ if ! ./configure --prefix="${PREFIX}" ${CONFIGURE_ARGS}; then
     exit 1
 fi
 
-# shortcut for the distcheck case, as it won't run any tests beyond
-# the build-in make check tests.
+# shortcut for the distcheck case, as it won't run any tests beyond the built-in
+# make check tests. We need to install the requirements (Sphinx) so we can build
+# the docs.
 if test "${DISTCHECK}" = "1"; then
+    echo "--> installing doc requirements"
+    pip install -r docs/requirements.txt
     echo "--> running make ${MAKE_ARGS} distcheck"
     make ${MAKE_ARGS} distcheck
     exit $?
