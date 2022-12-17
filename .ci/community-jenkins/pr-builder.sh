@@ -182,7 +182,9 @@ case ${PLATFORM_ID} in
 esac
 
 if test "$BUILD_32BIT" = "1" ; then
-    CONFIGURE_ARGS="$CONFIGURE_ARGS CFLAGS=-m32 CXXFLAGS=-m32 FCFLAGS=-m32 LDFLAGS=-m32"
+    # TODO: temporarily disabling picky, but only a workaround for now, because
+    # pmix is not 32-bit clean.
+    CONFIGURE_ARGS="$CONFIGURE_ARGS CFLAGS=-m32 CXXFLAGS=-m32 FCFLAGS=-m32 LDFLAGS=-m32 --disable-picky"
 fi
 
 echo "--> Compiler setup: $CONFIGURE_ARGS"
