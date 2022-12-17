@@ -57,9 +57,7 @@ node('linux') {
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    // TODO: removed clang39, do we want to reevaluate which compilers to use
-    // here? clang39 is old.
-    def compilers = ["gcc5", "gcc6"]
+    def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
     def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04", "ubuntu_20.04"]
     def check_stages_list = []
 
@@ -76,9 +74,12 @@ def prepare_check_stages() {
 	def name = "Compiler: ${compiler}".replaceAll("-", "")
 	build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \"${compiler}\""))
     }
+    // TODO: enable 32-bit builds; pmix was causing issues
+    //build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
 
-    build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "rhel8", "--distcheck"))
+    // TODO: change platform back to something else(?). On newer distros, newer
+    // versions of perl cause automake problems, and m4 has freadahead problems.
+    build_parallel_map.put("distcheck", prepare_build("distcheck", "amazon_linux_2", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
