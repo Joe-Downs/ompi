@@ -84,7 +84,7 @@ echo "--> version: $VERSION_ID"
 
 #
 # See if builder provided a compiler we should use, and translate it
-# to CONFIGURE_ARGS
+# to CONFIGURE_ARGS. TODO: Do we need these beyond Ubuntu?
 #
 case ${PLATFORM_ID} in
     rhel)
@@ -119,6 +119,8 @@ case ${PLATFORM_ID} in
 	esac
 	;;
     ubuntu)
+	# TODO: Can we get rid of gcc-4.x? clang-3.x? For ones we do use, are
+	# the version numbers correct?
 	case "$COMPILER" in
 	    "")
 		echo "--> Using default compilers"
@@ -138,6 +140,18 @@ case ${PLATFORM_ID} in
 	    gcc6)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-6 CXX=g++-6 FC=gfortran-6"
 		;;
+	    gcc7)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-7 CXX=g++-7 FC=gfortran-7"
+		;;
+	    gcc8)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-8 CXX=g++-8 FC=gfortran-8"
+		;;
+	    gcc9)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-9 CXX=g++-9 FC=gfortran-9"
+		;;
+	    gcc10)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=gcc-10 CXX=g++-10 FC=gfortran-10"
+		;;
 	    clang36)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-3.6 CXX=clang++-3.6 --disable-mpi-fortran"
 		;;
@@ -149,6 +163,9 @@ case ${PLATFORM_ID} in
 		;;
 	    clang39)
 		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-3.9 CXX=clang++-3.9 --disable-mpi-fortran"
+		;;
+	    clang10)
+		CONFIGURE_ARGS="$CONFIGURE_ARGS CC=clang-10 CXX=clang++-10 --disable-mpi-fortran"
 		;;
 	    *)
 		echo "Unsupported compiler ${COMPILER}.  Aborting"
