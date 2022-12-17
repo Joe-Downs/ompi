@@ -60,7 +60,7 @@ def prepare_check_stages() {
     // TODO: removed clang39, do we want to reevaluate which compilers to use
     // here? clang39 is old.
     def compilers = ["gcc5", "gcc6"]
-    def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04"]
+    def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04", "ubuntu_20.04"]
     def check_stages_list = []
 
     // build everything stage
@@ -78,7 +78,7 @@ def prepare_check_stages() {
     }
 
     build_parallel_map.put("32-bit", prepare_build("32-bit", "32bit_builds", "--32bit-build"))
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_20.04", "--distcheck"))
+    build_parallel_map.put("distcheck", prepare_build("distcheck", "ubuntu_18.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 

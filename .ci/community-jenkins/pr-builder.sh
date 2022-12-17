@@ -183,8 +183,9 @@ esac
 
 if test "$BUILD_32BIT" = "1" ; then
     # TODO: temporarily disabling picky, but only a workaround for now, because
-    # pmix is not 32-bit clean.
-    CONFIGURE_ARGS="$CONFIGURE_ARGS CFLAGS=-m32 CXXFLAGS=-m32 FCFLAGS=-m32 LDFLAGS=-m32 --disable-picky"
+    # pmix is not 32-bit clean. --disable-devel-check is because of pmix's
+    # configure flag.
+    CONFIGURE_ARGS="$CONFIGURE_ARGS CFLAGS=-m32 CXXFLAGS=-m32 FCFLAGS=-m32 LDFLAGS=-m32 --disable-picky --disable-devel-check"
 fi
 
 echo "--> Compiler setup: $CONFIGURE_ARGS"
