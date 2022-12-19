@@ -42,8 +42,10 @@ node('linux') {
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
-    def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04", "ubuntu_20.04"]
+    //def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
+    //def platforms = ["amazon_linux_2", "rhel7", "rhel8", "ubuntu_18.04", "ubuntu_20.04"]
+    def compilers = []
+    def platforms = []
     def check_stages_list = []
 
     // build everything stage
@@ -64,7 +66,7 @@ def prepare_check_stages() {
 
     // TODO: change platform back to something else(?). On newer distros, newer
     // versions of perl cause automake problems, and m4 has freadahead problems.
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "amazon_linux_2", "--distcheck"))
+    build_parallel_map.put("distcheck", prepare_build("distcheck - ubuntu 18.04", "ubuntu_18.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
