@@ -66,8 +66,8 @@ def prepare_check_stages() {
 
     // TODO: change platform back to something else(?). On newer distros, newer
     // versions of perl cause automake problems, and m4 has freadahead problems.
-    build_parallel_map.put("distcheck", prepare_build("distcheck - Ubuntu 20.04", "ubuntu_20.04", "--distcheck"))
-    build_parallel_map.put("distcheck", prepare_build("distcheck - Ubuntu 18.04", "ubuntu_18.04", "--distcheck"))
+    build_parallel_map.put("distcheck - Ubuntu 20.04", prepare_build("distcheck - Ubuntu 20.04", "ubuntu_20.04", "--distcheck"))
+    build_parallel_map.put("distcheck - Ubuntu 18.04", prepare_build("distcheck - Ubuntu 18.04", "ubuntu_18.04", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
