@@ -30,7 +30,7 @@ jobs:
 
   label:
     permissions:
-      issue: write
+      issues: write
       pull-requests: write
     name: Label Pull Request
     runs-on: ubuntu-latest
