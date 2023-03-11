@@ -27,8 +27,10 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN}}"
           cherry-pick-required: true
+
   label:
     permissions:
+      issue: write
       pull-requests: write
     name: Label Pull Request
     runs-on: ubuntu-latest
