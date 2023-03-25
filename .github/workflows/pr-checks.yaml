@@ -42,6 +42,7 @@ jobs:
   milestone:
     permissions:
       issues: write
+      pull-requests: write
     name: Milestone Pull Request
     runs-on: ubuntu-latest
     steps:
