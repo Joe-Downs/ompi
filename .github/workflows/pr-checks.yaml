@@ -39,3 +39,14 @@ jobs:
         uses: Joe-Downs/pr-labeler@main
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
+
+  milestone:
+    permissions:
+      issues: write
+    name: Milestone Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull Request Milestoner
+        uses: Joe-Downs/pr-milestoner@main
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
