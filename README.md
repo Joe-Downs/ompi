@@ -30,3 +30,4 @@ Instructions for how to build the Open MPI documentation can be found
 here:
 https://docs.open-mpi.org/en/v5.0.x/developers/prerequisites.html#sphinx.
 foo
+foo
