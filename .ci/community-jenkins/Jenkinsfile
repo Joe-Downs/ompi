@@ -87,7 +87,11 @@ def prepare_build(build_name, label, build_arg) {
             node(label) {
                 checkout(changelog: false, poll: false, scm: scm)
                 //TODO: fix this
-                sh "exit 1"
+                try {
+                    sh "exit 1"
+                } catch (Exception error) {
+                    println("Exception occured: " +  error)
+                }
                 //sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
                 cleanWs(notFailBuild: true)
             }
