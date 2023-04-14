@@ -45,10 +45,16 @@ println('Tests Completed')
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-    def configure_options = ["--disable-dlopen", "--disable-oshmem", "--enable-builtin-atomic", "--enable-ipv6"]
-    def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
-    def platforms = ["amazon_linux_2", "amazon_linux_2-arm64", "rhel7", "rhel8", "ubuntu_18.04"]
+
+    //TODO: add these back
+    //def configure_options = ["--disable-dlopen", "--disable-oshmem", "--enable-builtin-atomic", "--enable-ipv6"]
+    //def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
+    //def platforms = ["amazon_linux_2", "amazon_linux_2-arm64", "rhel7", "rhel8", "ubuntu_18.04"]
     def check_stages_list = []
+
+    def configure_options = []
+    def compilers = []
+    def platforms = ["amazon_linux_2"]
 
     // Build everything stage
     def build_parallel_map = [:]
@@ -57,17 +63,18 @@ def prepare_check_stages() {
         build_parallel_map.put(name, prepare_build(name, platform, ""))
     }
 
-    for (compiler in compilers) {
-        def name = "Compiler: ${compiler}".replaceAll("-", "")
-        build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \\\"${compiler}\\\""))
-    }
+    //TODO: add this back
+    // for (compiler in compilers) {
+    //     def name = "Compiler: ${compiler}".replaceAll("-", "")
+    //     build_parallel_map.put(name, prepare_build(name, compiler, "--compiler \\\"${compiler}\\\""))
+    // }
 
-      for (configure_option in configure_options) {
-        def name = "Configure: ${configure_option}".replaceAll("-", "")
-        build_parallel_map.put(name, prepare_build(name, "(ec2&&linux)", "--configure-args \\\"${configure_option}\\\""))
-    }
+    //   for (configure_option in configure_options) {
+    //     def name = "Configure: ${configure_option}".replaceAll("-", "")
+    //     build_parallel_map.put(name, prepare_build(name, "(ec2&&linux)", "--configure-args \\\"${configure_option}\\\""))
+    // }
 
-    build_parallel_map.put("distcheck", prepare_build("distcheck", "tarball_build", "--distcheck"))
+    //build_parallel_map.put("distcheck", prepare_build("distcheck", "tarball_build", "--distcheck"))
 
     check_stages_list.add(build_parallel_map)
 
@@ -79,7 +86,9 @@ def prepare_build(build_name, label, build_arg) {
         stage("${build_name}") {
             node(label) {
                 checkout(changelog: false, poll: false, scm: scm)
-                sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
+                //TODO: fix this
+                sh "exit 1"
+                //sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
                 cleanWs(notFailBuild: true)
             }
         }
