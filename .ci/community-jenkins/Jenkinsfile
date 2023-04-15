@@ -52,7 +52,6 @@ println('Tests Completed')
 // although currently we only support the one stage of "everything", where each
 // build stage is a map of different configurations to test.
 def prepare_check_stages() {
-
     def configure_options = ["--disable-dlopen", "--disable-oshmem", "--enable-builtin-atomic", "--enable-ipv6"]
     def compilers = ["clang10", "gcc5", "gcc6", "gcc7", "gcc8", "gcc9", "gcc10"]
     def platforms = ["amazon_linux_2", "amazon_linux_2-arm64", "rhel7", "rhel8", "ubuntu_18.04"]
@@ -87,13 +86,16 @@ def prepare_build(build_name, label, build_arg) {
         stage("${build_name}") {
             node(label) {
                 checkout(changelog: false, poll: false, scm: scm)
-                //TODO: fix this
+                // If pr-builder.sh fails, the sh step will throw an exception,
+                // which we catch so that the job doesn't abort and continues on
+                // to other steps - such as cleanup. Because we catch the
+                // exception, we need to tell Jenkins the overall job has
+                // failed.
                 try {
-                    sh "exit 1"
-                } catch (Exception error) {
-                    println("Exception occured: " +  error)
+                    sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
+                } catch (Exception e) {
+                    currentBuild.result = "FAILURE"
                 }
-                //sh "/bin/bash -x .ci/community-jenkins/pr-builder.sh ${build_arg} ompi"
                 cleanWs(notFailBuild: true)
             }
         }
